@@ -25,7 +25,7 @@ export class ContratoModel {
     public dataFimContrato: Date;
 
     @Prop({ required: true })
-    public diaVencimentoFaturaMensalidade: Date;
+    public diaVencimentoFaturaMensalidade: number;
 
     @Prop({ required: true, default: true })
     public isAtivo: boolean;
