@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ContaBancariaModule } from './module/conta-bancaria.module';
 import { ContratoModule } from './module/contrato.module';
 import { PessoaModule } from './module/pessoa.module';
 import { UsuarioModule } from './module/usuario.module';
@@ -12,7 +13,8 @@ import { UsuarioModule } from './module/usuario.module';
     // MongooseModule.forRoot("mongodb://localhost/db_sistema_financeiro"),
     UsuarioModule,
     PessoaModule,
-    ContratoModule
+    ContratoModule,
+    ContaBancariaModule
   ],
   controllers: [AppController],
   providers: [AppService],
