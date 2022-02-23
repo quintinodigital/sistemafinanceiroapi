@@ -13,7 +13,10 @@ export class ContratoModel {
     public _id: ObjectId = new ObjectId();
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: PessoaModel.name, required: true })
-    public pessoaModel: PessoaModel;
+    public pessoaContratadaModel: PessoaModel;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: PessoaModel.name, required: true })
+    public pessoaContratanteModel: PessoaModel;
 
     @Prop({ required: true })
     public identificador: string;

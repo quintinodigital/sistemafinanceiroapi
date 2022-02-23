@@ -7,6 +7,7 @@ import { ContaBancariaModule } from './module/conta-bancaria.module';
 import { ContratoModule } from './module/contrato.module';
 import { PessoaModule } from './module/pessoa.module';
 import { UsuarioModule } from './module/usuario.module';
+import { FaturaMensalidadeContratualModule } from './module/fatura-mensalidade-contratual.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { UsuarioModule } from './module/usuario.module';
     PessoaModule,
     ContratoModule,
     ContaBancariaModule,
-    CartaoBancarioModule
+    CartaoBancarioModule,
+    FaturaMensalidadeContratualModule
   ],
   controllers: [AppController],
   providers: [AppService],
