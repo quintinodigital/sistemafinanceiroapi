@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CartaoBancarioModule } from './module/cartao-bancario.module';
 import { ContaBancariaModule } from './module/conta-bancaria.module';
 import { ContratoModule } from './module/contrato.module';
 import { PessoaModule } from './module/pessoa.module';
@@ -14,7 +15,8 @@ import { UsuarioModule } from './module/usuario.module';
     UsuarioModule,
     PessoaModule,
     ContratoModule,
-    ContaBancariaModule
+    ContaBancariaModule,
+    CartaoBancarioModule
   ],
   controllers: [AppController],
   providers: [AppService],
