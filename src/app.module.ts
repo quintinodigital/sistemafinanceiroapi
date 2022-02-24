@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CartaoBancarioModule } from './module/cartao-bancario.module';
+import { CategoriaMovimentoFinanceiroModule } from './module/categoria-movimento-financeiro.module';
 import { ContaBancariaModule } from './module/conta-bancaria.module';
 import { ContratoModule } from './module/contrato.module';
 import { FaturaMensalidadeContratualModule } from './module/fatura-mensalidade-contratual.module';
@@ -18,7 +19,8 @@ import { UsuarioModule } from './module/usuario.module';
     ContratoModule,
     ContaBancariaModule,
     CartaoBancarioModule,
-    FaturaMensalidadeContratualModule
+    FaturaMensalidadeContratualModule,
+    CategoriaMovimentoFinanceiroModule
   ],
   controllers: [AppController],
   providers: [AppService],
