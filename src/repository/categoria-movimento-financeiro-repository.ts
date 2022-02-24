@@ -12,8 +12,14 @@ export class CategoriaMovimentoFinanceiroRepository {
     ) { }
 
     public async saveOne(categoriaMovimentoFinanceiroModel: CategoriaMovimentoFinanceiroModel) {
-        console.log("Repository: ", categoriaMovimentoFinanceiroModel);
         return await new this.categoriaMovimentoFinanceiroRepository(categoriaMovimentoFinanceiroModel).save();
+    }
+
+    public async saveAll(categoriaMovimentoFinanceiroModelList: CategoriaMovimentoFinanceiroModel[]) {
+        for(let categoriaMovimentoFinanceiro of categoriaMovimentoFinanceiroModelList) {
+            this.saveOne(categoriaMovimentoFinanceiro);
+        }
+        return categoriaMovimentoFinanceiroModelList;
     }
 
     public async findAll() {

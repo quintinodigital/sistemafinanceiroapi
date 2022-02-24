@@ -14,6 +14,11 @@ export class CategoriaMovimentoFinanceiroController {
         return this.categoriaMovimentoFinanceiroService.saveOne(categoriaMovimentoFinanceiroModel);
     }
 
+    @Post("all")
+    public async saveAll(@Body() categoriaMovimentoFinanceiroModelList: CategoriaMovimentoFinanceiroModel[]) {
+        return this.categoriaMovimentoFinanceiroService.saveAll(categoriaMovimentoFinanceiroModelList);
+    }
+
     @Get()
     public async findAll() {
         return await this.categoriaMovimentoFinanceiroService.findAll();

@@ -1,4 +1,4 @@
-import { Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ObjectId } from 'bson';
 
 export type ProdutoServicoDocument = ProdutoServicoModel & Document;
@@ -10,6 +10,7 @@ export class ProdutoServicoModel {
 
     public _id: ObjectId = new ObjectId();
 
+    @Prop({ required: true, unique: true })
     public nome: string;
 
 }

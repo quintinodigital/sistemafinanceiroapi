@@ -13,6 +13,10 @@ export class CategoriaMovimentoFinanceiroService {
         return this.categoriaMovimentoFinanceiroRepository.saveOne(categoriaMovimentoFinanceiroModel);
     }
 
+    public async saveAll(categoriaMovimentoFinanceiroModelList: CategoriaMovimentoFinanceiroModel[]) {
+        return this.categoriaMovimentoFinanceiroRepository.saveAll(categoriaMovimentoFinanceiroModelList);
+    }
+
     public async findAll() {
         return this.categoriaMovimentoFinanceiroRepository.findAll();
     }

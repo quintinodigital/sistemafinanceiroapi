@@ -8,7 +8,7 @@ export class CategoriaMovimentoFinanceiroModel {
 
     public _id: ObjectId = new ObjectId();    
     
-    @Prop({ required: true })
+    @Prop({ required: true, unique: true})
     public descricao: string;
 
 }
