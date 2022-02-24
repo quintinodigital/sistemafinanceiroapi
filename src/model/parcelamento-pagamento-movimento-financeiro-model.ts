@@ -3,12 +3,12 @@ import { ObjectId } from 'bson';
 import * as mongoose from "mongoose";
 import { MovimentoFinanceiroModel } from "./movimento-financeiro-model";
 
-export type ParcelamentoMovimentoFinanceiroDocument = ParcelamentoMovimentoFinanceiroModel & Document;
+export type ParcelamentoPagamentoMovimentoFinanceiroDocument = ParcelamentoPagamentoMovimentoFinanceiroModel & Document;
 
 @Schema({
-    collection: "doc_parcelamento_movimento_financeiro"
+    collection: "doc_parcelamento_pagamento_movimento_financeiro"
 })
-export class ParcelamentoMovimentoFinanceiroModel {
+export class ParcelamentoPagamentoMovimentoFinanceiroModel {
 
     public _id: ObjectId = new ObjectId();
 
@@ -32,4 +32,4 @@ export class ParcelamentoMovimentoFinanceiroModel {
 
 }
 
-export const ParcelamentoMovimentoFinanceiroSchema = SchemaFactory.createForClass(ParcelamentoMovimentoFinanceiroModel);
+export const ParcelamentoPagamentoMovimentoFinanceiroSchema = SchemaFactory.createForClass(ParcelamentoPagamentoMovimentoFinanceiroModel);

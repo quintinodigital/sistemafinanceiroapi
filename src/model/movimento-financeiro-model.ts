@@ -3,7 +3,6 @@ import { ObjectId } from 'bson';
 import * as mongoose from "mongoose";
 import { CategoriaMovimentoFinanceiroModel } from "./categoria-movimento-financeiro-model";
 import { PagamentoMovimentoFinanceiroModel } from "./pagamento-movimento-financeiro-model";
-import { ParcelamentoMovimentoFinanceiroModel } from "./parcelamento-movimento-financeiro-model";
 import { PessoaModel } from "./pessoa-model";
 import { ProdutoServicoModel } from "./produto-servico.model";
 
@@ -25,19 +24,13 @@ export class MovimentoFinanceiroModel {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: ProdutoServicoModel.name, required: true })
     public produtoServicoModelList: ProdutoServicoModel[];
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: ParcelamentoMovimentoFinanceiroModel.name, required: true })
-    public parcelamentoMovimentoFinanceiroModel: ParcelamentoMovimentoFinanceiroModel[];
-
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: PagamentoMovimentoFinanceiroModel.name, required: true })
-    public pagamentoMovimentoFinanceiroModel: PagamentoMovimentoFinanceiroModel[];
-
-    // FIXMEE -- Implementar no módulo de Gerenciar Arquivos
+    // FIXME -- Implementar no módulo de Gerenciar Arquivos
     public documentoModel: any[];
 
     @Prop({ required: true })
     public valorTotal: number;
 
-    @Prop({ required: true })
+    @Prop({ required: true, default: Date })
     public dataMovimentoFinanceiro: Date;
 
 }
