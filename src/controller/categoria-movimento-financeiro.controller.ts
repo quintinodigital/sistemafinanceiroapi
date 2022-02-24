@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CategoriaMovimentoFinanceiroModel } from 'src/model/categoria-movimento-financeiro.model';
+import { CategoriaMovimentoFinanceiroModel } from 'src/model/categoria-movimento-financeiro-model';
 import { CategoriaMovimentoFinanceiroService } from 'src/service/categoria-movimento-financeiro.service';
 
 @Controller('categoria-movimento-financeiro')

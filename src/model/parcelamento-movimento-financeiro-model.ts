@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ObjectId } from 'bson';
+import * as mongoose from "mongoose";
+import { MovimentoFinanceiroModel } from "./movimento-financeiro-model";
 
 export type ParcelamentoMovimentoFinanceiroDocument = ParcelamentoMovimentoFinanceiroModel & Document;
 
@@ -9,6 +11,9 @@ export type ParcelamentoMovimentoFinanceiroDocument = ParcelamentoMovimentoFinan
 export class ParcelamentoMovimentoFinanceiroModel {
 
     public _id: ObjectId = new ObjectId();
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: MovimentoFinanceiroModel.name, required: true })
+    public movimentoFinanceiroModel: MovimentoFinanceiroModel;
 
     @Prop({ required: true, default: 0.0 })
     public valorParcela: number;
@@ -23,7 +28,7 @@ export class ParcelamentoMovimentoFinanceiroModel {
     public numeroParcela: number;
 
     @Prop({ required: true, default: 1 })
-    public numeroMaximoParcela: number;
+    public quantidadeParcela: number;
 
 }
 

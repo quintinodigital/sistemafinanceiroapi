@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ObjectId } from 'bson';
 import * as mongoose from "mongoose";
-import { CategoriaMovimentoFinanceiroModel } from "./categoria-movimento-financeiro.model";
+import { CategoriaMovimentoFinanceiroModel } from "./categoria-movimento-financeiro-model";
 import { PagamentoMovimentoFinanceiroModel } from "./pagamento-movimento-financeiro-model";
 import { ParcelamentoMovimentoFinanceiroModel } from "./parcelamento-movimento-financeiro-model";
 import { PessoaModel } from "./pessoa-model";
-import { ProdutoServicoModel } from "./produto-servico-model";
+import { ProdutoServicoModel } from "./produto-servico.model";
 
 export type MovimentoFinanceiroDocument = MovimentoFinanceiroModel & Document;
 
@@ -23,7 +23,7 @@ export class MovimentoFinanceiroModel {
     public categoriaMovimentoFinanceiroModel: CategoriaMovimentoFinanceiroModel;
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: ProdutoServicoModel.name, required: true })
-    public produtoServicoModel: ProdutoServicoModel;
+    public produtoServicoModelList: ProdutoServicoModel[];
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: ParcelamentoMovimentoFinanceiroModel.name, required: true })
     public parcelamentoMovimentoFinanceiroModel: ParcelamentoMovimentoFinanceiroModel[];

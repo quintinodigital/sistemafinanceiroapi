@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CategoriaMovimentoFinanceiroModel } from 'src/model/categoria-movimento-financeiro.model';
+import { CategoriaMovimentoFinanceiroModel } from 'src/model/categoria-movimento-financeiro-model';
 import { CategoriaMovimentoFinanceiroRepository } from 'src/repository/categoria-movimento-financeiro-repository';
 
 @Injectable()

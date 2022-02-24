@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CategoriaMovimentoFinanceiroController } from 'src/controller/categoria-movimento-financeiro.controller';
-import { CategoriaMovimentoFinanceiroModel } from 'src/model/categoria-movimento-financeiro.model';
+import { CategoriaMovimentoFinanceiroModel, CategoriaMovimentoFinanceiroSchema } from 'src/model/categoria-movimento-financeiro-model';
 import { CategoriaMovimentoFinanceiroRepository } from 'src/repository/categoria-movimento-financeiro-repository';
 import { CategoriaMovimentoFinanceiroService } from 'src/service/categoria-movimento-financeiro.service';
-import { CategoriaMovimentoFinanceiroSchema } from '../model/categoria-movimento-financeiro.model';
 
 @Module({
     imports: [
