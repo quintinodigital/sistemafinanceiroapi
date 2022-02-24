@@ -16,7 +16,7 @@ export class ContratoRepository {
     }
 
     public async findAll() {
-        return await this.contratoRepository.find().populate("pessoaContratadaModel");
+        return await this.contratoRepository.find().populate("pessoaContratadaModel").populate("pessoaContratanteModel");
     }
 
     public async findOne(contratoID: number) {
