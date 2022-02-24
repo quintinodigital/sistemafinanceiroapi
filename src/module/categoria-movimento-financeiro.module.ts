@@ -4,11 +4,11 @@ import { CategoriaMovimentoFinanceiroController } from 'src/controller/categoria
 import { CategoriaMovimentoFinanceiroModel } from 'src/model/categoria-movimento-financeiro.model';
 import { CategoriaMovimentoFinanceiroRepository } from 'src/repository/categoria-movimento-financeiro-repository';
 import { CategoriaMovimentoFinanceiroService } from 'src/service/categoria-movimento-financeiro.service';
-import { ContratoSchema } from '../model/contrato-model';
+import { CategoriaMovimentoFinanceiroSchema } from '../model/categoria-movimento-financeiro.model';
 
 @Module({
     imports: [
-        MongooseModule.forFeature([{name: CategoriaMovimentoFinanceiroModel.name, schema: ContratoSchema}]),
+        MongooseModule.forFeature([{name: CategoriaMovimentoFinanceiroModel.name, schema: CategoriaMovimentoFinanceiroSchema}]),
     ],
     controllers: [CategoriaMovimentoFinanceiroController],
     providers: [CategoriaMovimentoFinanceiroService, CategoriaMovimentoFinanceiroRepository],
