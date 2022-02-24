@@ -22,6 +22,9 @@ export class FaturaMensalidadeContratualModel {
     @Prop({ required: true })
     public dataVencimento: Date;
 
+    @Prop({ required: true })
+    public valorTotalFaturaMensalidade: number;
+
     @Prop()
     public dataPagamento: Date;
 
