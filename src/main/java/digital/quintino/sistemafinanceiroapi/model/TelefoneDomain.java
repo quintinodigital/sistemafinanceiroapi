@@ -36,12 +36,31 @@ public class TelefoneDomain implements Serializable {
 	@Column(name = "NUMERO", unique = true, nullable = false)
 	private String numero;
 	
+	@Column(name = "IS_PRINCIPAL", nullable = false)
+	private Boolean isPrincipal;
+	
+	@Column(name = "IS_APLICATIVO_MENSAGEM", nullable = false)
+	private Boolean isAplicativoMensagem;
+	
+	@Column(name = "IS_ATIVO", nullable = false)
+	private Boolean isAtivo;
+	
 	public TelefoneDomain() { }
 
 	public TelefoneDomain(TipoTelefoneDomain tipoTelefoneDomain, String ddd, String numero) {
 		this.tipoTelefoneDomain = tipoTelefoneDomain;
 		this.ddd = ddd;
 		this.numero = numero;
+	}
+
+	public TelefoneDomain(TipoTelefoneDomain tipoTelefoneDomain, PessoaModel pessoaModel, String ddd, String numero, Boolean isPrincipal, Boolean isAplicativoMensagem, Boolean isAtivo) {
+		this.tipoTelefoneDomain = tipoTelefoneDomain;
+		this.pessoaModel = pessoaModel;
+		this.ddd = ddd;
+		this.numero = numero;
+		this.isPrincipal = isPrincipal;
+		this.isAplicativoMensagem = isAplicativoMensagem;
+		this.isAtivo = isAtivo;
 	}
 
 	public Long getCodigo() {
@@ -82,6 +101,30 @@ public class TelefoneDomain implements Serializable {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public Boolean getIsPrincipal() {
+		return isPrincipal;
+	}
+
+	public void setIsPrincipal(Boolean isPrincipal) {
+		this.isPrincipal = isPrincipal;
+	}
+
+	public Boolean getIsAplicativoMensagem() {
+		return isAplicativoMensagem;
+	}
+
+	public void setIsAplicativoMensagem(Boolean isAplicativoMensagem) {
+		this.isAplicativoMensagem = isAplicativoMensagem;
+	}
+
+	public Boolean getIsAtivo() {
+		return isAtivo;
+	}
+
+	public void setIsAtivo(Boolean isAtivo) {
+		this.isAtivo = isAtivo;
 	}
 
 }

@@ -12,7 +12,6 @@ import digital.quintino.sistemafinanceiroapi.model.TelefoneDomain;
 import digital.quintino.sistemafinanceiroapi.model.TipoPessoaModel;
 import digital.quintino.sistemafinanceiroapi.model.TipoTelefoneDomain;
 import digital.quintino.sistemafinanceiroapi.repository.PessoaInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.repository.TelefoneInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.TipoPessoaInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.TipoTelefoneInterfaceRepository;
 
@@ -28,9 +27,6 @@ public class Application implements CommandLineRunner {
 	@Autowired
 	private TipoTelefoneInterfaceRepository tipoTelefoneInterfaceRepository;
 	
-	@Autowired
-	private TelefoneInterfaceRepository telefoneInterfaceRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -43,30 +39,24 @@ public class Application implements CommandLineRunner {
 			
 			this.tipoPessoaRepository.saveAll(Arrays.asList(tipoPessoaModel1, tipoPessoaModel2));
 			
-		PessoaModel pessoaModel1 = new PessoaModel(tipoPessoaModel1, "José Quintino");
-		PessoaModel pessoaModel2 = new PessoaModel(tipoPessoaModel1, "Priscilla Mariano");
-		PessoaModel pessoaModel3 = new PessoaModel(tipoPessoaModel2, "Quintino Digital");
+		PessoaModel pessoaModel1 = new PessoaModel(tipoPessoaModel1, "Quester Puausbe Tuan Beaur");
+		PessoaModel pessoaModel2 = new PessoaModel(tipoPessoaModel1, "Assoe Laoes Roece Pioza");
+		PessoaModel pessoaModel3 = new PessoaModel(tipoPessoaModel2, "Quester Puausbe Tuan Beaur Digital");
 		
 			this.pessoaRepository.saveAll(Arrays.asList(pessoaModel1, pessoaModel2, pessoaModel3));
 			
-		TipoTelefoneDomain tipoTelefoneDomain1 = new TipoTelefoneDomain("Whatsapp");
+		TipoTelefoneDomain tipoTelefoneDomain1 = new TipoTelefoneDomain("Móvel");
 		
 			this.tipoTelefoneInterfaceRepository.save(tipoTelefoneDomain1);
 			
-		TelefoneDomain telefoneDomain1 = new TelefoneDomain(tipoTelefoneDomain1, "61", "996196506");
-			telefoneDomain1.setPessoaModel(pessoaModel1);
+		TelefoneDomain telefoneDomain1 = new TelefoneDomain(tipoTelefoneDomain1, pessoaModel1, "99", "999999999", true, true, true);
+		
+		TelefoneDomain telefoneDomain2 = new TelefoneDomain(tipoTelefoneDomain1, pessoaModel1, "88", "888888888", false, true, true);
 			
-		TelefoneDomain telefoneDomain2 = new TelefoneDomain(tipoTelefoneDomain1, "61", "995995532");
-			telefoneDomain2.setPessoaModel(pessoaModel1);
+			pessoaModel1.setTelefone(telefoneDomain1);
+			pessoaModel1.setTelefone(telefoneDomain2);
 			
-			this.telefoneInterfaceRepository.saveAll(Arrays.asList(telefoneDomain1, telefoneDomain2));
-			
-			// Recuperar pessoa
-			for(PessoaModel pessoaModelResultado : this.pessoaRepository.findAll()) {
-				System.out.println(pessoaModelResultado.getCodigo());
-				System.out.println(pessoaModelResultado.getTipoPessoaDomain().getDescricao());
-				System.out.println(pessoaModelResultado.getNome());
-			}
+				this.pessoaRepository.save(pessoaModel1);
 			
 	}
 

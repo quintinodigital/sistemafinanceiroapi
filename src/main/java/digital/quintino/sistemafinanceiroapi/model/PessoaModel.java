@@ -39,7 +39,7 @@ public class PessoaModel implements Serializable {
 	
 	public PessoaModel() { }
 	
-	public void persistirTelefone(TelefoneDomain telefoneDomain) {
+	public void setTelefone(TelefoneDomain telefoneDomain) {
 		telefoneDomain.setPessoaModel(this);
 		this.telefoneDomainList.add(telefoneDomain);
 	}
