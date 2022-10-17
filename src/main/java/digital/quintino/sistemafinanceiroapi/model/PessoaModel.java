@@ -1,14 +1,19 @@
 package digital.quintino.sistemafinanceiroapi.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,10 +31,22 @@ public class PessoaModel implements Serializable {
 	@JoinColumn(name = "ID_TIPO_PESSOA")
 	private TipoPessoaModel tipoPessoaDomain;
 	
+	@OneToMany(mappedBy = "pessoaModel", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private List<TelefoneDomain> telefoneDomainList = new ArrayList<>();
+	
 	@Column(name = "NOME", nullable = false)
 	private String nome;
 	
 	public PessoaModel() { }
+	
+	public void persistirTelefone(TelefoneDomain telefoneDomain) {
+		telefoneDomain.setPessoaModel(this);
+		this.telefoneDomainList.add(telefoneDomain);
+	}
+	
+	public void removerTelefone(int index) {
+		this.telefoneDomainList.remove(index);
+	}
 
 	public PessoaModel(TipoPessoaModel tipoPessoaDomain, String nome) {
 		this.tipoPessoaDomain = tipoPessoaDomain;
@@ -50,6 +67,14 @@ public class PessoaModel implements Serializable {
 
 	public void setTipoPessoaDomain(TipoPessoaModel tipoPessoaDomain) {
 		this.tipoPessoaDomain = tipoPessoaDomain;
+	}
+
+	public List<TelefoneDomain> getTelefoneDomainList() {
+		return telefoneDomainList;
+	}
+
+	public void setTelefoneDomainList(List<TelefoneDomain> telefoneDomainList) {
+		this.telefoneDomainList = telefoneDomainList;
 	}
 
 	public String getNome() {
