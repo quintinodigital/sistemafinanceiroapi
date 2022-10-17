@@ -34,6 +34,9 @@ public class PessoaModel implements Serializable {
 	@OneToMany(mappedBy = "pessoaModel", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<TelefoneDomain> telefoneDomainList = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "pessoaModel", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private List<DocumentoModel> documentoModelList = new ArrayList<>();
+	
 	@Column(name = "NOME", nullable = false)
 	private String nome;
 	
@@ -44,8 +47,9 @@ public class PessoaModel implements Serializable {
 		this.telefoneDomainList.add(telefoneDomain);
 	}
 	
-	public void removerTelefone(int index) {
-		this.telefoneDomainList.remove(index);
+	public void setDocumento(DocumentoModel documentoModel) {
+		documentoModel.setPessoaModel(this);
+		this.documentoModelList.add(documentoModel);
 	}
 
 	public PessoaModel(TipoPessoaModel tipoPessoaDomain, String nome) {
@@ -83,6 +87,14 @@ public class PessoaModel implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<DocumentoModel> getDocumentoModelList() {
+		return documentoModelList;
+	}
+
+	public void setDocumentoModelList(List<DocumentoModel> documentoModelList) {
+		this.documentoModelList = documentoModelList;
 	}
 
 }

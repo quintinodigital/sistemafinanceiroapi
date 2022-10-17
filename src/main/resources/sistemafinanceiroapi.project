@@ -1,3 +1,5 @@
+#### FEATURE
+
 SISTEMAFINANCEIRO14102022141139FEATURE
 SISTEMAFINANCEIRO14102022141336FEATURE
 
@@ -14,3 +16,9 @@ SISTEMAFINANCEIRO14102022164311FEATURE
 	
 - Implementar funcionalidade de gestão de Pessoas
 - Implementar mapeamento dos modelos: Tipo Documento, Documento
+
+#### HOTFIX
+
+SISTEMAFINANCEIRO00000000XXXXXXHOTFIX
+
+- Criar tabela TB_DDD com descricao unica

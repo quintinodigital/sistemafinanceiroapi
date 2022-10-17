@@ -7,11 +7,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import digital.quintino.sistemafinanceiroapi.model.DocumentoModel;
 import digital.quintino.sistemafinanceiroapi.model.PessoaModel;
 import digital.quintino.sistemafinanceiroapi.model.TelefoneDomain;
+import digital.quintino.sistemafinanceiroapi.model.TipoDocumentoModel;
 import digital.quintino.sistemafinanceiroapi.model.TipoPessoaModel;
 import digital.quintino.sistemafinanceiroapi.model.TipoTelefoneDomain;
 import digital.quintino.sistemafinanceiroapi.repository.PessoaInterfaceRepository;
+import digital.quintino.sistemafinanceiroapi.repository.TipoDocumentoInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.TipoPessoaInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.TipoTelefoneInterfaceRepository;
 
@@ -26,6 +29,9 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private TipoTelefoneInterfaceRepository tipoTelefoneInterfaceRepository;
+	
+	@Autowired
+	private TipoDocumentoInterfaceRepository tipoDocumentoInterfaceRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -57,6 +63,17 @@ public class Application implements CommandLineRunner {
 			pessoaModel1.setTelefone(telefoneDomain2);
 			
 				this.pessoaRepository.save(pessoaModel1);
+				
+		TipoDocumentoModel tipoDocumentoModel1 = new TipoDocumentoModel("CPF");
+		TipoDocumentoModel tipoDocumentoModel2 = new TipoDocumentoModel("CNPJ");
+		
+			this.tipoDocumentoInterfaceRepository.saveAll(Arrays.asList(tipoDocumentoModel1, tipoDocumentoModel2));
+		
+		DocumentoModel documentoModel1 = new DocumentoModel(tipoDocumentoModel2, "43247391000156");
+			
+			pessoaModel3.setDocumento(documentoModel1);
+			
+			this.pessoaRepository.save(pessoaModel3);
 			
 	}
 
