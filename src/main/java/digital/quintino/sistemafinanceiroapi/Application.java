@@ -7,16 +7,23 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import digital.quintino.sistemafinanceiroapi.enumerated.TipoLancamentoFinanceiroEnumerated;
 import digital.quintino.sistemafinanceiroapi.model.DocumentoModel;
+import digital.quintino.sistemafinanceiroapi.model.LancamentoFinanceiroModel;
+import digital.quintino.sistemafinanceiroapi.model.LancamentoFinanceiroProdutoServicoModel;
 import digital.quintino.sistemafinanceiroapi.model.PessoaModel;
+import digital.quintino.sistemafinanceiroapi.model.ProdutoServicoModel;
 import digital.quintino.sistemafinanceiroapi.model.TelefoneDomain;
 import digital.quintino.sistemafinanceiroapi.model.TipoDocumentoModel;
 import digital.quintino.sistemafinanceiroapi.model.TipoPessoaModel;
 import digital.quintino.sistemafinanceiroapi.model.TipoTelefoneDomain;
+import digital.quintino.sistemafinanceiroapi.repository.LancamentoFinanceiroProdutoServicoInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.PessoaInterfaceRepository;
+import digital.quintino.sistemafinanceiroapi.repository.ProdutoServicoInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.TipoDocumentoInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.TipoPessoaInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.TipoTelefoneInterfaceRepository;
+import digital.quintino.sistemafinanceiroapi.service.LancamentoFinanceiroService;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -32,6 +39,15 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private TipoDocumentoInterfaceRepository tipoDocumentoInterfaceRepository;
+	
+	@Autowired
+	private LancamentoFinanceiroService lancamentoFinanceiroService;
+	
+	@Autowired
+	private ProdutoServicoInterfaceRepository produtoServicoInterfaceRepository;
+	
+	@Autowired
+	private LancamentoFinanceiroProdutoServicoInterfaceRepository lancamentoFinanceiroProdutoServicoInterfaceRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -74,6 +90,27 @@ public class Application implements CommandLineRunner {
 			pessoaModel3.setDocumento(documentoModel1);
 			
 			this.pessoaRepository.save(pessoaModel3);
+			
+		LancamentoFinanceiroModel lancamentoFinanceiroModel1 = new LancamentoFinanceiroModel();
+			lancamentoFinanceiroModel1.setDiaVencimento(10);
+			lancamentoFinanceiroModel1.setIdentificador("REC0012022FIX");
+			lancamentoFinanceiroModel1.setNumeroParcelamento(12);
+			lancamentoFinanceiroModel1.setObservacao("");
+			lancamentoFinanceiroModel1.setTipoLancamentoFinanceiroEnumerated(TipoLancamentoFinanceiroEnumerated.RECEITA_FIXA);
+			lancamentoFinanceiroModel1.setValorTotal(48000D);
+			
+			this.lancamentoFinanceiroService.saveOne(lancamentoFinanceiroModel1);
+			
+		ProdutoServicoModel produtoServicoModel1 = new ProdutoServicoModel("Salário CLT");
+		
+			this.produtoServicoInterfaceRepository.save(produtoServicoModel1);
+			
+		LancamentoFinanceiroProdutoServicoModel lancamentoFinanceiroProdutoServicoModel1 = new LancamentoFinanceiroProdutoServicoModel();
+			lancamentoFinanceiroProdutoServicoModel1.setLancamentoFinanceiroModel(lancamentoFinanceiroModel1);
+			lancamentoFinanceiroProdutoServicoModel1.setProdutoServicoModel(produtoServicoModel1);
+			
+			this.lancamentoFinanceiroProdutoServicoInterfaceRepository.save(lancamentoFinanceiroProdutoServicoModel1);
+		
 			
 	}
 
