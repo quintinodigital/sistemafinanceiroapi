@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import digital.quintino.sistemafinanceiroapi.enumerated.TipoLancamentoFinanceiroEnumerated;
+import digital.quintino.sistemafinanceiroapi.enumeration.TipoContaBancariaEnumeration;
+import digital.quintino.sistemafinanceiroapi.model.ContaBancariaModel;
 import digital.quintino.sistemafinanceiroapi.model.DocumentoModel;
 import digital.quintino.sistemafinanceiroapi.model.LancamentoFinanceiroModel;
 import digital.quintino.sistemafinanceiroapi.model.LancamentoFinanceiroProdutoServicoModel;
@@ -17,6 +19,7 @@ import digital.quintino.sistemafinanceiroapi.model.TelefoneDomain;
 import digital.quintino.sistemafinanceiroapi.model.TipoDocumentoModel;
 import digital.quintino.sistemafinanceiroapi.model.TipoPessoaModel;
 import digital.quintino.sistemafinanceiroapi.model.TipoTelefoneDomain;
+import digital.quintino.sistemafinanceiroapi.repository.ContaBancariaInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.LancamentoFinanceiroProdutoServicoInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.PessoaInterfaceRepository;
 import digital.quintino.sistemafinanceiroapi.repository.ProdutoServicoInterfaceRepository;
@@ -41,10 +44,13 @@ public class Application implements CommandLineRunner {
 	private TipoDocumentoInterfaceRepository tipoDocumentoInterfaceRepository;
 	
 	@Autowired
-	private LancamentoFinanceiroService lancamentoFinanceiroService;
+	private ContaBancariaInterfaceRepository contaBancariaInterfaceRepository;
 	
 	@Autowired
 	private ProdutoServicoInterfaceRepository produtoServicoInterfaceRepository;
+	
+	@Autowired
+	private LancamentoFinanceiroService lancamentoFinanceiroService;
 	
 	@Autowired
 	private LancamentoFinanceiroProdutoServicoInterfaceRepository lancamentoFinanceiroProdutoServicoInterfaceRepository;
@@ -64,8 +70,9 @@ public class Application implements CommandLineRunner {
 		PessoaModel pessoaModel1 = new PessoaModel(tipoPessoaModel1, "Quester Puausbe Tuan Beaur");
 		PessoaModel pessoaModel2 = new PessoaModel(tipoPessoaModel1, "Assoe Laoes Roece Pioza");
 		PessoaModel pessoaModel3 = new PessoaModel(tipoPessoaModel2, "Quester Puausbe Tuan Beaur Digital");
+		PessoaModel pessoaModel4 = new PessoaModel(tipoPessoaModel1, "Banco do Brasil");
 		
-			this.pessoaRepository.saveAll(Arrays.asList(pessoaModel1, pessoaModel2, pessoaModel3));
+			this.pessoaRepository.saveAll(Arrays.asList(pessoaModel1, pessoaModel2, pessoaModel3, pessoaModel4));
 			
 		TipoTelefoneDomain tipoTelefoneDomain1 = new TipoTelefoneDomain("Móvel");
 		
@@ -110,7 +117,17 @@ public class Application implements CommandLineRunner {
 			lancamentoFinanceiroProdutoServicoModel1.setProdutoServicoModel(produtoServicoModel1);
 			
 			this.lancamentoFinanceiroProdutoServicoInterfaceRepository.save(lancamentoFinanceiroProdutoServicoModel1);
-		
+			
+		ContaBancariaModel contaBancariaModel1 = new ContaBancariaModel();
+			contaBancariaModel1.setDataAbertura(null);
+			contaBancariaModel1.setDataEncerramento(null);
+			contaBancariaModel1.setNumeroAgencia("0826-5");
+			contaBancariaModel1.setNumeroConta("71.746-0");
+			contaBancariaModel1.setPessoaInstituicaoFinanceira(pessoaModel4);
+			contaBancariaModel1.setPessoaTitular(pessoaModel1);
+			contaBancariaModel1.setTipoContaBancariaEnumeration(TipoContaBancariaEnumeration.CONTA_CORRENTE);
+			
+			this.contaBancariaInterfaceRepository.save(contaBancariaModel1);
 			
 	}
 
