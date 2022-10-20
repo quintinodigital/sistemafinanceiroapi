@@ -39,8 +39,8 @@ public class PagamentoModel implements Serializable {
     @Column(name = "DATA_PAGAMENTO")
     private Date dataPagamento;
 
-    @Column(name = "VALOR_VENCIMENTO")
-    private Double valorVencimento;
+    @Column(name = "VALOR_PAGAMENTO")
+    private Double valorPagamento;
 
     public PagamentoModel() { }
 
@@ -100,12 +100,12 @@ public class PagamentoModel implements Serializable {
         this.dataPagamento = dataPagamento;
     }
 
-    public Double getValorVencimento() {
-        return valorVencimento;
+    public Double getValorPagamento() {
+        return valorPagamento;
     }
 
-    public void setValorVencimento(Double valorVencimento) {
-        this.valorVencimento = valorVencimento;
+    public void setValorPagamento(Double valorPagamento) {
+        this.valorPagamento = valorPagamento;
     }
 
 }

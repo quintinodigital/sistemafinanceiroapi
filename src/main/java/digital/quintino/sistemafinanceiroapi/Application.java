@@ -1,32 +1,18 @@
 package digital.quintino.sistemafinanceiroapi;
 
-import java.util.Arrays;
-
+import digital.quintino.sistemafinanceiroapi.enumerated.TipoLancamentoFinanceiroEnumerated;
+import digital.quintino.sistemafinanceiroapi.enumeration.TipoContaBancariaEnumeration;
+import digital.quintino.sistemafinanceiroapi.enumeration.TipoFormaPagamentoEnumeration;
+import digital.quintino.sistemafinanceiroapi.model.*;
+import digital.quintino.sistemafinanceiroapi.repository.*;
+import digital.quintino.sistemafinanceiroapi.service.LancamentoFinanceiroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import digital.quintino.sistemafinanceiroapi.enumerated.TipoLancamentoFinanceiroEnumerated;
-import digital.quintino.sistemafinanceiroapi.enumeration.TipoContaBancariaEnumeration;
-import digital.quintino.sistemafinanceiroapi.model.ContaBancariaModel;
-import digital.quintino.sistemafinanceiroapi.model.DocumentoModel;
-import digital.quintino.sistemafinanceiroapi.model.LancamentoFinanceiroModel;
-import digital.quintino.sistemafinanceiroapi.model.LancamentoFinanceiroProdutoServicoModel;
-import digital.quintino.sistemafinanceiroapi.model.PessoaModel;
-import digital.quintino.sistemafinanceiroapi.model.ProdutoServicoModel;
-import digital.quintino.sistemafinanceiroapi.model.TelefoneDomain;
-import digital.quintino.sistemafinanceiroapi.model.TipoDocumentoModel;
-import digital.quintino.sistemafinanceiroapi.model.TipoPessoaModel;
-import digital.quintino.sistemafinanceiroapi.model.TipoTelefoneDomain;
-import digital.quintino.sistemafinanceiroapi.repository.ContaBancariaInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.repository.LancamentoFinanceiroProdutoServicoInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.repository.PessoaInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.repository.ProdutoServicoInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.repository.TipoDocumentoInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.repository.TipoPessoaInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.repository.TipoTelefoneInterfaceRepository;
-import digital.quintino.sistemafinanceiroapi.service.LancamentoFinanceiroService;
+import java.util.Arrays;
+import java.util.Date;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -54,6 +40,12 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private LancamentoFinanceiroProdutoServicoInterfaceRepository lancamentoFinanceiroProdutoServicoInterfaceRepository;
+
+	@Autowired
+	private TipoPagamentoInterfaceRepository tipoPagamentoInterfaceRepository;
+
+	@Autowired
+	private PagamentoInterfaceRepository pagamentoInterfaceRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -128,6 +120,23 @@ public class Application implements CommandLineRunner {
 			contaBancariaModel1.setTipoContaBancariaEnumeration(TipoContaBancariaEnumeration.CONTA_CORRENTE);
 			
 			this.contaBancariaInterfaceRepository.save(contaBancariaModel1);
+
+		TipoPagamentoModel tipoPagamentoModel1 = new TipoPagamentoModel();
+			tipoPagamentoModel1.setDescricao("Pagamento de Receita Fixa");
+
+			this.tipoPagamentoInterfaceRepository.save(tipoPagamentoModel1);
+
+		PagamentoModel pagamentoModel1 = new PagamentoModel();
+			pagamentoModel1.setDataPagamento(new Date());
+			pagamentoModel1.setContaBancariaModel(contaBancariaModel1);
+			pagamentoModel1.setTipoPagamentoModel(tipoPagamentoModel1);
+			pagamentoModel1.setPessoaFontePagamento(pessoaModel3);
+			pagamentoModel1.setValorPagamento(4300D);
+			pagamentoModel1.setDataPagamento(new Date());
+			pagamentoModel1.setDataVencimento(new Date());
+			pagamentoModel1.setTipoFormaPagamentoEnumeration(TipoFormaPagamentoEnumeration.TRANSFERENCIA_BANCARIA);
+
+				this.pagamentoInterfaceRepository.save(pagamentoModel1);
 			
 	}
 
