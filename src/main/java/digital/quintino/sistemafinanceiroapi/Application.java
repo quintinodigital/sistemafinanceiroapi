@@ -46,6 +46,12 @@ public class Application implements CommandLineRunner {
 
 	@Autowired
 	private PagamentoInterfaceRepository pagamentoInterfaceRepository;
+
+	@Autowired
+	private ParcelamentoInterfaceRepository parcelamentoInterfaceRepository;
+
+	@Autowired
+	private LancamentoFinanceiroParcelamentoInterfaceRepository lancamentoFinanceiroParcelamentoInterfaceRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -137,6 +143,20 @@ public class Application implements CommandLineRunner {
 			pagamentoModel1.setTipoFormaPagamentoEnumeration(TipoFormaPagamentoEnumeration.TRANSFERENCIA_BANCARIA);
 
 				this.pagamentoInterfaceRepository.save(pagamentoModel1);
+
+		ParcelamentoDomain parcelamentoDomain1 = new ParcelamentoDomain();
+			parcelamentoDomain1.setNumeroParcela(1);
+			parcelamentoDomain1.setDataPagamento(new Date());
+			parcelamentoDomain1.setDataVencimento(new Date());
+			parcelamentoDomain1.setIdentificador("PARC0012022");
+
+			this.parcelamentoInterfaceRepository.save(parcelamentoDomain1);
+
+		LancamentoFinanceiroParcelamentoModel lancamentoFinanceiroParcelamentoModel1 = new LancamentoFinanceiroParcelamentoModel();
+			lancamentoFinanceiroParcelamentoModel1.setLancamentoFinanceiroModel(lancamentoFinanceiroModel1);
+			lancamentoFinanceiroParcelamentoModel1.setParcelamentoDomain(parcelamentoDomain1);
+
+			this.lancamentoFinanceiroParcelamentoInterfaceRepository.save(lancamentoFinanceiroParcelamentoModel1);
 			
 	}
 
